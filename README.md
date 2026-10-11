@@ -8,7 +8,7 @@
 [![Tauri](https://img.shields.io/badge/tauri-2-blue?logo=tauri)](https://tauri.app/)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue?logo=python)](https://www.python.org/)
 [![Platform](https://img.shields.io/badge/platform-linux-lightgrey?logo=linux)]()
-[![License: AGPL v3](https://img.shields.io/badge/license-AGPLv3-green)](LICENSE)
+[![License: AGPL v3+](https://img.shields.io/badge/license-AGPLv3%2B-green)](LICENSE)
 [![Status](https://img.shields.io/badge/status-alpha-orange)]()
 
 </div>
@@ -128,9 +128,9 @@ Two environment variables are available for tinkering: `LLOCAL_BACKEND_DIR` (whe
 
 ## License
 
-Copyright (C) 2026 BiondaR
+Copyright (C) 2026 Bionda Rozin (<bionda.rozin@unesp.br>)
 
-LLoCal is free software, released under the [GNU Affero General Public License v3.0](LICENSE).
+LLoCal is free software, released under the [GNU Affero General Public License](LICENSE), version 3 or (at your option) any later version.
 
 It depends on components with copyleft licenses of their own: PyMuPDF (AGPL-3.0), used to read PDFs, and Piper and phonemizer/espeak-ng (GPL-3.0), used for the audio summary. The language models and voices you download are covered by their own terms.
 
