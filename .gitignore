@@ -1,0 +1,37 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Backend (transcritor C++ + llm_engine)
+backend/build*/
+backend/venv/
+backend/models/
+__pycache__/
+
+# Arquivos pessoais e saídas de teste (não vão para o repositório)
+Resume-pra-mim (Copy)/
+backend/resume pra mim/
+backend/amostras_voz/
+backend/llm_engine/resultado_*
+backend/llm_engine/mapa_aula_final*

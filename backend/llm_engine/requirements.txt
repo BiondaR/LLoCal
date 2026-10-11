@@ -1,0 +1,5 @@
+PyMuPDF==1.27.2.2
+graphviz==0.21
+Requests==2.33.1
+kokoro-onnx==0.6.1
+piper-tts==1.8.0

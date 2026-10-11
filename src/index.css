@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background-color: #382b38; /* Fundo da janela */
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #222;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #FD9FFF; /* Scrollbar rosa */
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 14px; /* Mais gordinha */
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Fundo invisível pra destacar o rosa */
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #FD9FFF; /* Nosso rosinha */
+  border-radius: 20px; /* Arredondado igual pílula */
+  border: 3px solid #382b38; /* Cria um "espaço" falso em volta dela */
+}
+/* Resumo renderizado (ResultsView) */
+.markdown-body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #BBD2DE;
+}
+.markdown-body > :first-child { margin-top: 0; }
+.markdown-body > :last-child { margin-bottom: 0; }
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  color: #FFFFFF;
+  font-weight: 600;
+  margin: 18px 0 8px;
+}
+.markdown-body h1 { font-size: 20px; }
+.markdown-body h2 { font-size: 18px; }
+.markdown-body h3,
+.markdown-body h4 { font-size: 16px; }
+.markdown-body p { margin: 0 0 12px; }
+.markdown-body strong { color: #FFFFFF; }
+.markdown-body ul,
+.markdown-body ol { margin: 0 0 12px; padding-left: 22px; }
+.markdown-body ul { list-style: disc; }
+.markdown-body ol { list-style: decimal; }
+.markdown-body li { margin-bottom: 4px; }
+.markdown-body code {
+  background: #2b2b2b;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 13px;
+}
+.markdown-body pre {
+  background: #2b2b2b;
+  border-radius: 8px;
+  padding: 12px;
+  overflow-x: auto;
+  margin: 0 0 12px;
+}
+.markdown-body pre code { padding: 0; }
