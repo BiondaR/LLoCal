@@ -79,7 +79,7 @@ LLoCal is an early-stage personal project. Please expect rough edges:
 - CMake and a C++17 compiler; the CUDA toolkit for GPU transcription
 - Python 3.10 or newer
 - `ffmpeg` and `graphviz`
-- [Ollama](https://ollama.com), running locally
+- [Ollama](https://ollama.com), running locally and up to date (older versions refuse to download current models)
 - Roughly 15 GB of disk for the default models
 
 ## Setup
