@@ -1,6 +1,19 @@
+<div align="center">
+
 # LLoCal
 
-**LLoCal: a NotebookLM-style research notebook that runs on local LLMs.**
+**LLoCal: a NotebookLM-style research notebook that runs on local LLMs**  
+**LLoCal: um caderno de pesquisa no estilo NotebookLM que roda em LLMs locais**
+
+[![Tauri](https://img.shields.io/badge/tauri-2-blue?logo=tauri)](https://tauri.app/)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue?logo=python)](https://www.python.org/)
+[![Platform](https://img.shields.io/badge/platform-linux-lightgrey?logo=linux)]()
+[![License: AGPL v3](https://img.shields.io/badge/license-AGPLv3-green)](LICENSE)
+[![Status](https://img.shields.io/badge/status-alpha-orange)]()
+
+</div>
+
+---
 
 Drop in lecture recordings, videos, PDFs and text files, and LLoCal turns them into study material — entirely on your own machine. Nothing is sent to a cloud service: transcription, reading, summarizing and speech all run locally.
 
@@ -112,6 +125,14 @@ backend/llm_engine/   Python: PDF reading, prompts, mind map, flashcards, quiz, 
 ```
 
 Two environment variables are available for tinkering: `LLOCAL_BACKEND_DIR` (where the backend lives) and `LLOCAL_LLM_MODEL` (default model when none is saved in the settings).
+
+## License
+
+Copyright (C) 2026 BiondaR
+
+LLoCal is free software, released under the [GNU Affero General Public License v3.0](LICENSE).
+
+It depends on components with copyleft licenses of their own: PyMuPDF (AGPL-3.0), used to read PDFs, and Piper and phonemizer/espeak-ng (GPL-3.0), used for the audio summary. The language models and voices you download are covered by their own terms.
 
 ## Acknowledgements
 
