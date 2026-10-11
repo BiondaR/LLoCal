@@ -8,9 +8,7 @@ from pathlib import Path
 from core.llm_factory import LLMFactory
 from core.prompt_builder import PromptBuilder
 from core.settings import Settings
-
-# Limite do material enviado junto da conversa, para sobrar contexto para o histórico
-MAX_SOURCE_CHARS = 36000
+from core.material import read_material
 
 def main():
     parser = argparse.ArgumentParser(description="Tira dúvidas sobre o material processado")
@@ -21,14 +19,14 @@ def main():
     args = parser.parse_args()
 
     history = json.load(sys.stdin)
-    fontes = (Path(args.job_dir) / "fontes.txt").read_text(encoding="utf-8", errors="replace")
+    material = read_material(Path(args.job_dir))
 
     system = (
         "Você é um monitor acadêmico tirando dúvidas de um estudante sobre o material abaixo. "
         "Responda de forma clara e direta, com base no material. "
         "Se a resposta não estiver no material, diga isso antes de complementar com o que você sabe.\n"
         f"{PromptBuilder.language_rule(args.lang)}\n\n"
-        f"MATERIAL:\n{fontes[:MAX_SOURCE_CHARS]}"
+        f"MATERIAL:\n{material}"
     )
     messages = [{"role": "system", "content": system}] + history
 

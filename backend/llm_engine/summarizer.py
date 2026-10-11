@@ -6,6 +6,7 @@ from core.document_parser import DocumentParser
 from core.prompt_builder import PromptBuilder
 from core.llm_factory import LLMFactory
 from core.settings import Settings
+from core.material import fit_material
 from render.mindmap_generator import MindmapGenerator
 
 def report(event: str, value: str = ""):
@@ -64,9 +65,24 @@ def main():
     if not text_aula.strip():
         raise RuntimeError("Nenhum texto foi extraído dos arquivos.")
 
-    # Texto completo das fontes, usado depois pela conversa (chat.py)
+    # Texto completo das fontes
+    fontes = text_aula + (f"\n\nMATERIAL COMPLEMENTAR:\n{text_pdf}" if text_pdf else "")
     with open(out_dir / "fontes.txt", "w", encoding="utf-8") as f:
-        f.write(text_aula + (f"\n\nMATERIAL COMPLEMENTAR:\n{text_pdf}" if text_pdf else ""))
+        f.write(fontes)
+
+    # Material que cabe no contexto do modelo: o texto inteiro ou, se for longo, anotações
+    # de cada trecho. É o que alimenta o resumo e o mapa aqui, e depois a conversa e os
+    # outros artefatos (chat.py, study.py)
+    material = fit_material(
+        fontes, call_llm,
+        language=PromptBuilder.LANGUAGES[PromptBuilder.language_code(args.lang)],
+        on_progress=lambda part, total: report("stage", f"leitura {part}/{total}"),
+    )
+    if material != fontes:
+        print(f"[*] Material longo ({len(fontes)} caracteres): condensado em anotações.", flush=True)
+        text_aula, text_pdf = material, ""
+    with open(out_dir / "material.txt", "w", encoding="utf-8") as f:
+        f.write(material)
 
     # 2. Resumo
     report("stage", "resumo")

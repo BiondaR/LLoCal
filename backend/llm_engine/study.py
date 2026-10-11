@@ -13,9 +13,7 @@ from pathlib import Path
 from core.llm_factory import LLMFactory
 from core.prompt_builder import PromptBuilder
 from core.settings import Settings
-
-# Limite do material enviado ao modelo, para caber no contexto
-MAX_SOURCE_CHARS = 36000
+from core.material import read_material
 
 MODELS_DIR = Path(__file__).resolve().parent.parent / "models"
 
@@ -130,7 +128,23 @@ def make_quiz(material: str, lang: str, out_dir: Path, settings: Settings) -> di
 
 def clean_script(script: str) -> str:
     """Tira do roteiro tudo que o TTS leria em voz alta sem fazer parte da narração."""
-    # Restos de markdown e indicações de cena "(...)"
+    # O prompt pede a narração entre <roteiro> e </roteiro>: o modelo costuma escrever
+    # comentários antes ("Okay, here's a script...") e notas para o narrador depois
+    # (aceita qualquer nome de marca: em outros idiomas o modelo às vezes a traduz, ex. <skript>)
+    tagged = re.search(r"<[\w-]+>(.*?)(?:</[\w-]+>|\Z)", script, flags=re.S)
+    fenced = re.search(r"```\w*\s*\n(.*?)```", script, flags=re.S)
+    if tagged:
+        script = tagged.group(1)
+    elif fenced:
+        script = fenced.group(1)
+    else:
+        # Sem as marcas: se houver linhas "---" separando, a narração é o bloco do meio;
+        # com um separador só, o maior dos dois lados
+        blocks = re.split(r"^\s*(?:-{3,}|\*{3,}|_{3,})\s*$", script, flags=re.M)
+        script = max(blocks[1:-1] if len(blocks) > 2 else blocks, key=len)
+
+    # Restos de marcas, de markdown e indicações de cena "(...)"
+    script = re.sub(r"</?[\w-]+>", "", script)
     script = re.sub(r"[*_#`>]", "", script)
     script = re.sub(r"^\s*[(\[][^)\]\n]*[)\]]\s*$", "", script, flags=re.M)
 
@@ -138,7 +152,7 @@ def clean_script(script: str) -> str:
     lines = script.strip().split("\n")
     while len(lines) > 1:
         first = lines[0].strip()
-        is_label = first.endswith(":") and len(first) < 120
+        is_label = first.endswith(":") and len(first) < 300
         is_title = len(first) < 60 and not first.endswith((".", "!", "?")) and not lines[1].strip()
         if first and not (is_label or is_title):
             break
@@ -203,7 +217,7 @@ def main():
     args = parser.parse_args()
 
     out_dir = Path(args.job_dir)
-    material = (out_dir / "fontes.txt").read_text(encoding="utf-8", errors="replace")[:MAX_SOURCE_CHARS]
+    material = read_material(out_dir)
     lang = PromptBuilder.language_code(args.lang)
 
     data = MAKERS[args.kind](material, lang, out_dir, Settings(args.settings, args.model))

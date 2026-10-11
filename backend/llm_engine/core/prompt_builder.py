@@ -64,7 +64,12 @@ REGRAS:
     def language_rule(lang: str) -> str:
         """Instrução de idioma que vai no fim dos prompts."""
         name = PromptBuilder.LANGUAGES[PromptBuilder.language_code(lang)]
-        return f"IDIOMA: escreva toda a resposta em {name}, traduzindo o conteúdo se ele estiver em outro idioma."
+        # "Não traduza o material": sem isso, com material em outro idioma o modelo às vezes
+        # devolvia o texto inteiro traduzido em vez de fazer a tarefa
+        return (
+            f"IDIOMA: escreva a sua resposta em {name}, mesmo que o material esteja em outro idioma. "
+            "Não traduza nem copie o material: faça apenas a tarefa pedida no início."
+        )
 
     @staticmethod
     def _instructions(kind: str, custom: str = None) -> str:
@@ -141,7 +146,9 @@ MATERIAL:
 {material}
 ---
 
-{PromptBuilder.language_rule(lang)}"""
+{PromptBuilder.language_rule(lang)}
+
+FORMATO: escreva a narração entre as marcas <roteiro> e </roteiro>. Só o que estiver entre elas é lido em voz alta, então não coloque ali comentários sobre a tarefa, duração estimada nem notas para o narrador."""
 
     # --- Versões antigas do mapa mental (o modelo escrevia o código do diagrama) ---
 

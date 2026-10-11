@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 export default function ProcessingView({ files, progressData, stage }) {
   const { t } = useTranslation();
+  // "leitura 2/4" -> etapa "leitura", detalhe "2/4"
+  const [stageName, stageDetail = ''] = (stage || '').split(' ');
 
   return (
     <div style={{ 
@@ -83,7 +85,7 @@ export default function ProcessingView({ files, progressData, stage }) {
 
       {/* Etapa do LLM (vale para todos os arquivos juntos) */}
       <p style={{ marginTop: '15px', minHeight: '18px', fontSize: '13px', color: '#BBD2DE', opacity: 0.7 }}>
-        {stage ? t(`stage.${stage}`, { defaultValue: '' }) : ''}
+        {stageName ? `${t(`stage.${stageName}`, { defaultValue: '' })} ${stageDetail}` : ''}
       </p>
 
     </div>

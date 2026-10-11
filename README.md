@@ -69,7 +69,7 @@ LLoCal is an early-stage personal project. Please expect rough edges:
 
 - Developed and tested only on **Linux with an NVIDIA GPU** (RTX 5080, 16 GB VRAM). `backend/CMakeLists.txt` pins the CUDA architecture for RTX 40/50-series cards; other GPUs may need a different value. A CPU-only build is supposed to work but has not been tried.
 - It runs in **development mode** (`npm run tauri dev`). There is no packaged installer yet: the app looks for the transcriber, the Python environment and the models inside the `backend/` folder of the source tree.
-- Long recordings have not been stress-tested. The model context is set to 16k tokens, so very long material may be cut.
+- Material that does not fit the model context (16k tokens) is first condensed into notes, section by section, so long sources take longer and lose some detail. Multi-hour recordings have not been stress-tested.
 - Code comments and internal messages are mostly in Portuguese.
 
 ## Requirements

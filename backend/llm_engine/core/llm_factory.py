@@ -19,6 +19,10 @@ class LLMFactory:
     # O padrão do Ollama é pequeno e corta aulas longas sem avisar
     NUM_CTX = 16384
 
+    # Teto de tokens por resposta. Sem ele, quando o modelo entra em repetição a chamada
+    # só termina no timeout (10 minutos com a GPU ocupada)
+    MAX_TOKENS = 4096
+
     SYSTEM_PROMPT = "Você é um assistente acadêmico de alto desempenho. Seja preciso e técnico."
 
     @staticmethod
@@ -32,6 +36,7 @@ class LLMFactory:
             "options": {
                 "temperature": 0.3, # Mantém a precisão para resumos técnicos
                 "num_ctx": LLMFactory.NUM_CTX,
+                "num_predict": LLMFactory.MAX_TOKENS,
             },
         }
         if format:

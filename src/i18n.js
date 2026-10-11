@@ -30,6 +30,7 @@ const resources = {
       process: 'Processar',
       stage: {
         resumo: 'Gerando resumo...',
+        leitura: 'Lendo o material...',
         mapa: 'Gerando mapa mental...',
       },
       close: {
@@ -60,6 +61,9 @@ const resources = {
         front: 'Pergunta',
         back: 'Resposta',
         hint: 'Clique no cartão para virar',
+        right: 'Acertei',
+        wrong: 'Errei',
+        reviewWrong: 'Rever as erradas',
       },
       quiz: {
         next: 'Próxima',
@@ -117,6 +121,7 @@ const resources = {
       process: 'Process',
       stage: {
         resumo: 'Generating summary...',
+        leitura: 'Reading the material...',
         mapa: 'Generating mind map...',
       },
       close: {
@@ -147,6 +152,9 @@ const resources = {
         front: 'Question',
         back: 'Answer',
         hint: 'Click the card to flip it',
+        right: 'Got it',
+        wrong: 'Missed it',
+        reviewWrong: 'Review missed cards',
       },
       quiz: {
         next: 'Next',
@@ -204,6 +212,7 @@ const resources = {
       process: 'Procesar',
       stage: {
         resumo: 'Generando resumen...',
+        leitura: 'Leyendo el material...',
         mapa: 'Generando mapa mental...',
       },
       close: {
@@ -234,6 +243,9 @@ const resources = {
         front: 'Pregunta',
         back: 'Respuesta',
         hint: 'Haz clic en la tarjeta para girarla',
+        right: 'Acerté',
+        wrong: 'Fallé',
+        reviewWrong: 'Repasar las falladas',
       },
       quiz: {
         next: 'Siguiente',
@@ -291,6 +303,7 @@ const resources = {
       process: 'Traiter',
       stage: {
         resumo: 'Génération du résumé...',
+        leitura: 'Lecture du contenu...',
         mapa: 'Génération de la carte mentale...',
       },
       close: {
@@ -321,6 +334,9 @@ const resources = {
         front: 'Question',
         back: 'Réponse',
         hint: 'Cliquez sur la carte pour la retourner',
+        right: 'Je savais',
+        wrong: 'Je ne savais pas',
+        reviewWrong: 'Revoir les cartes ratées',
       },
       quiz: {
         next: 'Suivante',
@@ -378,6 +394,7 @@ const resources = {
       process: 'Verarbeiten',
       stage: {
         resumo: 'Zusammenfassung wird erstellt...',
+        leitura: 'Material wird gelesen...',
         mapa: 'Mindmap wird erstellt...',
       },
       close: {
@@ -408,6 +425,9 @@ const resources = {
         front: 'Frage',
         back: 'Antwort',
         hint: 'Karte anklicken zum Umdrehen',
+        right: 'Gewusst',
+        wrong: 'Nicht gewusst',
+        reviewWrong: 'Falsche wiederholen',
       },
       quiz: {
         next: 'Weiter',
@@ -465,6 +485,7 @@ const resources = {
       process: 'Elabora',
       stage: {
         resumo: 'Generazione del riassunto...',
+        leitura: 'Lettura del materiale...',
         mapa: 'Generazione della mappa mentale...',
       },
       close: {
@@ -495,6 +516,9 @@ const resources = {
         front: 'Domanda',
         back: 'Risposta',
         hint: 'Clicca sulla carta per girarla',
+        right: 'La sapevo',
+        wrong: 'Non la sapevo',
+        reviewWrong: 'Ripassa quelle sbagliate',
       },
       quiz: {
         next: 'Avanti',
