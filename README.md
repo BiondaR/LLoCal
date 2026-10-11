@@ -67,6 +67,7 @@ The language of the audio or video you add is detected automatically by Whisper 
 
 LLoCal is an early-stage personal project. Please expect rough edges:
 
+- **It still needs deeper testing.** So far it has only been tried by the author on a handful of lectures, papers and PDFs. The accuracy and quality of what it generates — summaries, mind maps, flashcards, quizzes, audio and chat answers — have not been systematically evaluated, so check the results against your original material before relying on them.
 - Developed and tested only on **Linux with an NVIDIA GPU** (RTX 5080, 16 GB VRAM). `backend/CMakeLists.txt` pins the CUDA architecture for RTX 40/50-series cards; other GPUs may need a different value. A CPU-only build is supposed to work but has not been tried.
 - It runs in **development mode** (`npm run tauri dev`). There is no packaged installer yet: the app looks for the transcriber, the Python environment and the models inside the `backend/` folder of the source tree.
 - Material that does not fit the model context (16k tokens) is first condensed into notes, section by section, so long sources take longer and lose some detail. Multi-hour recordings have not been stress-tested.
